@@ -19,6 +19,8 @@ SteepestDescent <- function(f, fprime, x0, alpha, nIter){
     # and save the new function value
     # [ToDo] fill in
     # Steepest descent update
+    xvec[i + 1] <- xvec[i] - alpha * fprime[xvec[i]]
+    fvec[i + 1] <- f(xvec[i + 1])
 
     # Function value
 
