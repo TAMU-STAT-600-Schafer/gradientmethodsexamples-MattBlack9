@@ -22,7 +22,7 @@ logistic_objective <- function(beta, X, y){
 # gradient - scalar value of gradient at inputs
 logistic_gradient <- function(beta, X, y){
   # [ToDo] Compute gradient for binary logistic regression problem using current values of X, y and beta
-  
+  delta_f <- (X * exp(X%*%beta)) / (1 + exp(X%*%beta))
 }
 
 # Calculation for gradient and objective at once
