@@ -51,6 +51,12 @@ logistic_both <- function(beta, X, y){
 # fvec - vector of length (nIter+1) storing the objective function for each row of beta_mat
 SteepestDescentBinLogistic <- function(X, y, beta_init, alpha, nIter){
   # [ToDo] Initialize storage for iterations and function values
+  p <- length(beta_init)
+  beta_mat <- matrix(nrow = nIter + 1, ncol = p)
+  beta_mat[1, ] <- beta_init
+
+  fvec <- vector(mode = numeric, length = nIter + 1)
+  fvec[1] <- logistic_objective(beta_init, x, y)
   
   # Calculate current objective value
   
@@ -58,15 +64,15 @@ SteepestDescentBinLogistic <- function(X, y, beta_init, alpha, nIter){
   for (i in 1:nIter){
     # At each iteration
     # Calculate gradient value and update x
+    beta_mat[i + 1, ] <- beta_mat[i, ] - alpha*logistic_gradient(beta_mat[i, ])
     
     # Update the objective
-    
-    # Update pbeta for next round
+    fvec[i + 1] <- logistic_objective(beta_mat[i + 1], X, y)
     
   }
   
   # Return the matrix of betea values, as well as the vector of function values across iterations, including the starting point (both have nIter + 1 elements, for x put them in columns)
-  
+  return(list(beta_mat = beta_mat, fvec = fvec))
 }
 
 # Write down customized solver of Newton's method on binary logistic to avoid recalculating extra things
