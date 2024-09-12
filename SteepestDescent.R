@@ -52,9 +52,9 @@ SteepestDescentVec <- function(f, fgradient, x0, alpha, nIter, ...){
     # At each iteration, update current value of x and save the new function value
     # [ToDo] fill in
     # Steepest descent update
-    xvec[1 + 1, ] <- xmat[i, ] - alpha * fgradient(xmat[i, ], ...)
+    xvec[, 1 + 1] <- xmat[, i] - alpha * fgradient(xmat[, i], ...)
     # Function value
-    fvec[i + i, ] <- f(mat[i + 1, ], ...)
+    fvec[i + i] <- f(mat[i + 1], ...)
 
   }
   
